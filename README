@@ -1,0 +1,3 @@
+./install.sh
+
+# if you don't have tmux, refere `readme_install_tmux.md`.
