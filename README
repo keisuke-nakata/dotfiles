@@ -1,3 +1,4 @@
 ./install.sh
 
-# if you don't have tmux, refere `readme_install_tmux.md`.
+# if you don't have tmux, see `readme_install_tmux.md`.
+# if you don't have iTerm2's shell integration, see "iTerm2>Install Shell Integration".
