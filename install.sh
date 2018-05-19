@@ -9,6 +9,20 @@ for d in ".tmux.conf"; do
 done
 
 mkdir $HOME/bin
-for c in "imgcat"; do
-  ln -snfv ${HERE}/$c ${HOME}/bin/$c
-done
+
+# install pbcopy
+read -r -p "Install pbcopy? (Do not install it on OSX) [y/N] " response
+case "$response" in
+  [yY][eE][sS]|[yY])
+    wget https://raw.githubusercontent.com/skaji/remote-pbcopy-iterm2/master/pbcopy
+    chmod +x pbcopy
+    mv pbcopy $HOME/bin
+    ;;
+  *)
+    echo "skip installing pbcpy"
+    ;;
+esac
+
+# for c in "imgcat"; do
+#   ln -snfv ${HERE}/$c ${HOME}/bin/$c
+# done

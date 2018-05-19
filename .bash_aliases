@@ -10,7 +10,7 @@ alias rsync-git='rsync --exclude ".git" --exclude "__pycache__"'
 
 function slack() {
   if [ -z "$SLACK_URL" ]; then
-    echo "Please set an environment variable SLACK_URL."
+    echo "Please set environment variable SLACK_URL."
   else
     MESSAGE=$1
     curl -X POST -H 'Content-type: application/json' --data '{"text":"'"$MESSAGE"'"}' ${SLACK_URL}
