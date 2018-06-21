@@ -23,6 +23,11 @@ case "$response" in
     ;;
 esac
 
+# set timezone
+sudo timedatectl set-timezone Asia/Tokyo
+
 # for c in "imgcat"; do
 #   ln -snfv ${HERE}/$c ${HOME}/bin/$c
 # done
+
+echo "you must put .bash_profile manually".

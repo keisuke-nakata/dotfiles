@@ -1,3 +1,5 @@
+# https://github.com/keisuke-nakata/dotfiles
+
 ./install.sh
 
 # if you don't have tmux, see `readme_install_tmux.md`.

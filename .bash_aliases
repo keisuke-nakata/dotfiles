@@ -1,5 +1,5 @@
 alias ll='ls -alF'
-alias la='ls -Alh'
+alias la='ls -lAh'
 alias l='ls -CF'
 
 alias targzx='tar zxvf'
