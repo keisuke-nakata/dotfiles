@@ -4,10 +4,23 @@
 `sudo yum/apt-get install tmux` で新しいバージョン (`tmux -V` -> 2.7 とか) が入るならそれで終わり。  
 以下は `sudo` がなかったり OS が古くて `tmux` が古い場合の対処
 
+## for Ubuntu16
+see: https://bogdanvlviv.com/posts/tmux/how-to-install-the-latest-tmux-on-ubuntu-16_04.html
+
+## 準備
+configure のときにコンパイラがないって言われる (あと make はそもそも必要)
+
+```bash
+apt-get update
+apt-get install g++ make
+```
+
+## 本番
 
 ```bash
 cd $HOME
 mkdir -p local/src
+cd local/src
 # Get&build libevent
 wget https://github.com/libevent/libevent/releases/download/release-2.1.8-stable/libevent-2.1.8-stable.tar.gz
 tar zxf libevent-2.1.8-stable.tar.gz
