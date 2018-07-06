@@ -1,6 +1,26 @@
-alias ll='ls -alF'
-alias la='ls -lAh'
-alias l='ls -CF'
+if [[ "$(uname)" == "Linux" ]]; then  # linux
+  # l: long
+  # h: humanize disk usage
+  # a: show hiddens
+  # A: show hiddens except `.` and `..`
+  # p: trailing directory mark `/`
+  alias ls='ls --color=auto -p'
+  alias ll='ls --color=auto -lhp'
+  alias la='ls --color=auto -lAhp'
+elif [[ "$(uname)" == "Darwin" ]]; then  # mac
+  # G: color
+  # l: long
+  # h: humanize disk usage
+  # a: show hiddens
+  # A: show hiddens except `.` and `..`
+  # p: trailing directory mark `/`
+  alias ls='ls -Gp'
+  alias ll='ls -Glhp'
+  alias la='ls -GlAhp'
+fi
+
+alias mv='mv -i'
+alias cp='cp -i'
 
 alias targzx='tar zxvf'
 alias targzc='tar zcvf'
