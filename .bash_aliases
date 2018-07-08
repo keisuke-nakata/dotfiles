@@ -28,6 +28,8 @@ alias targzc='tar zcvf'
 alias rsync-git='rsync --exclude ".git" --exclude "__pycache__" -h'
 # rsync-git -acvz --delete /path/to/project/prj_dir remote:/path/to/project/ --dry-run
 
+alias sshrm='ssh-keygen -R'  # remove the entry from `known_hosts`.
+
 function slack() {
   if [ -z "$SLACK_URL" ]; then
     echo "Please set environment variable SLACK_URL."
