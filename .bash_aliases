@@ -30,6 +30,10 @@ alias rsync-git='rsync --exclude ".git" --exclude "__pycache__" -h'
 
 alias sshrm='ssh-keygen -R'  # remove the entry from `known_hosts`.
 
+alias abs='readlink -f'  # get absolute path of file/dir
+
+alias tree='tree -CF'  # C: color, F: Appends '/', '=', '*', '@', '|' or '>' as per ls -F.
+
 function slack() {
   if [ -z "$SLACK_URL" ]; then
     echo "Please set environment variable SLACK_URL."
