@@ -19,8 +19,13 @@ elif [[ "$(uname)" == "Darwin" ]]; then  # mac
   alias la='ls -GlAhp'
 fi
 
-alias mv='mv -i'
-alias cp='cp -i'
+alias mv='mv -iv'
+alias cp='cp -iv'
+
+cd() { builtin cd "$@"; ls; }  # list directory upon 'cd'
+alias ..='cd ../'
+alias ...='cd ../../'
+alias ....='cd ../../../'
 
 alias targzx='tar zxvf'
 alias targzc='tar zcvf'
