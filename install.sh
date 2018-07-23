@@ -4,7 +4,7 @@ set -Cuex
 
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-for d in ".tmux.conf"; do
+for d in ".tmux.conf" ".nanorc" ".nano"; do
   ln -snfv ${HERE}/$d ${HOME}/$d
 done
 
@@ -30,4 +30,4 @@ sudo timedatectl set-timezone Asia/Tokyo
 #   ln -snfv ${HERE}/$c ${HOME}/bin/$c
 # done
 
-echo "you must put .bash_profile manually".
+echo "you must put .bashrc manually".
