@@ -22,7 +22,7 @@ fi
 alias mv='mv -iv'
 alias cp='cp -iv'
 
-cd() { builtin cd "$@"; ls; }  # list directory upon 'cd'
+cd() { builtin cd "$@" && ls; }  # list directory upon 'cd'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
