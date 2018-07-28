@@ -22,7 +22,7 @@ fi
 alias mv='mv -iv'
 alias cp='cp -iv'
 
-cd() { builtin cd "$@" && ls; }  # list directory upon 'cd'
+cd() { builtin cd "$@" && ls }  # list directory upon 'cd'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
@@ -30,8 +30,23 @@ alias ....='cd ../../../'
 alias targzx='tar zxvf'
 alias targzc='tar zcvf'
 
-alias rsync-git='rsync --exclude ".git" --exclude "__pycache__" -h'
-# rsync-git -acvz --delete /path/to/project/prj_dir remote:/path/to/project/ --dry-run
+alias rsync-git-core='rsync --exclude ".git" --exclude "__pycache__" -h'
+# rsync-git-core -acvz --delete /path/to/project/prj_dir remote:/path/to/project/ --dry-run
+rsync-git() {
+  rsync-git-core "$@" --dry-run
+
+  read -r -p "Execute rsync? [y/N] " response
+  case "$response" in
+    [yY][eE][sS]|[yY])
+      echo ""
+      rsync-git-core "$@"
+      ;;
+    *)
+      echo "quit without rsync"
+      ;;
+  esac
+}
+# rsync-git -acvz --delete /path/to/project/prj_dir remote:/path/to/project/
 
 alias sshrm='ssh-keygen -R'  # remove the entry from `known_hosts`.
 
