@@ -22,6 +22,8 @@ fi
 alias mv='mv -iv'
 alias cp='cp -iv'
 
+alias df='df -h'
+
 cd() { builtin cd "$@" && ls }  # list directory upon 'cd'
 alias ..='cd ../'
 alias ...='cd ../../'
