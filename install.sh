@@ -26,8 +26,8 @@ esac
 # set timezone
 sudo timedatectl set-timezone Asia/Tokyo
 
-# for c in "imgcat"; do
-#   ln -snfv ${HERE}/$c ${HOME}/bin/$c
-# done
+for c in $(ls bin/); do
+  ln -snfv ${HERE}/bin/$c ${HOME}/bin/$c
+done
 
 echo "you must put .bashrc manually".
