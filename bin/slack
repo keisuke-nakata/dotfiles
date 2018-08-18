@@ -1,7 +1,0 @@
-#!/bin/bash
-if [ -z "$SLACK_URL" ]; then
-  echo "Please set environment variable SLACK_URL."
-else
-  MESSAGE=$1
-  curl -X POST -H 'Content-type: application/json' --data '{"text":"'"$MESSAGE"'"}' ${SLACK_URL}
-fi
