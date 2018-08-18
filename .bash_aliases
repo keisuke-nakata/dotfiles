@@ -24,7 +24,6 @@ alias cp='cp -iv'
 
 alias df='df -h'
 
-cd() { builtin cd "$@" && ls }  # list directory upon 'cd'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
@@ -40,12 +39,3 @@ alias sshrm='ssh-keygen -R'  # remove the entry from `known_hosts`.
 alias abs='readlink -f'  # get absolute path of file/dir
 
 alias tree='tree -CF'  # C: color, F: Appends '/', '=', '*', '@', '|' or '>' as per ls -F.
-
-slack() {
-  if [ -z "$SLACK_URL" ]; then
-    echo "Please set environment variable SLACK_URL."
-  else
-    MESSAGE=$1
-    curl -X POST -H 'Content-type: application/json' --data '{"text":"'"$MESSAGE"'"}' ${SLACK_URL}
-  fi
-}
