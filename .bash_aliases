@@ -24,7 +24,7 @@ alias cp='cp -iv'
 
 alias df='df -h'
 
-cd() { builtin cd "$@" && ls }  # list directory upon 'cd'
+cd() { builtin cd "$@" && ls; }  # list directory upon 'cd'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
@@ -35,7 +35,7 @@ alias targzc='tar zcvf'
 alias rsync-git-core='rsync --exclude ".git" --exclude "__pycache__" -h'
 # rsync-git-core -acvz --delete /path/to/project/prj_dir remote:/path/to/project/ --dry-run
 
-function functionrsyncgit() {  # hyphen/underscore is not allowed for function names...
+rsync-git() {
   rsync-git-core "$@" --dry-run
 
   read -r -p "Execute rsync? [y/N] " response
@@ -49,7 +49,6 @@ function functionrsyncgit() {  # hyphen/underscore is not allowed for function n
       ;;
   esac
 }
-alias rsync-git='functionrsyncgit'
 # rsync-git -acvz --delete /path/to/project/prj_dir remote:/path/to/project/
 
 
@@ -59,7 +58,7 @@ alias abs='readlink -f'  # get absolute path of file/dir
 
 alias tree='tree -CF'  # C: color, F: Appends '/', '=', '*', '@', '|' or '>' as per ls -F.
 
-function slack() {
+slack() {
   if [ -z "$SLACK_URL" ]; then
     echo "Please set environment variable SLACK_URL."
   else
