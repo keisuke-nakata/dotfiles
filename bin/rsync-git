@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+rsync-git-core "$@" --dry-run
+
+read -r -p "Execute rsync? [y/N] " response
+case "$response" in
+  [yY][eE][sS]|[yY])
+    echo ""
+    rsync-git-core "$@"
+    ;;
+  *)
+    echo "quit without rsync"
+    ;;
+esac
+# rsync-git -acvz --delete /path/to/project/prj_dir remote:/path/to/project/

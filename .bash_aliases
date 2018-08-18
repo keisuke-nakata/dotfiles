@@ -35,22 +35,6 @@ alias targzc='tar zcvf'
 alias rsync-git-core='rsync --exclude ".git" --exclude "__pycache__" -h'
 # rsync-git-core -acvz --delete /path/to/project/prj_dir remote:/path/to/project/ --dry-run
 
-rsync-git() {
-  rsync-git-core "$@" --dry-run
-
-  read -r -p "Execute rsync? [y/N] " response
-  case "$response" in
-    [yY][eE][sS]|[yY])
-      echo ""
-      rsync-git-core "$@"
-      ;;
-    *)
-      echo "quit without rsync"
-      ;;
-  esac
-}
-# rsync-git -acvz --delete /path/to/project/prj_dir remote:/path/to/project/
-
 alias sshrm='ssh-keygen -R'  # remove the entry from `known_hosts`.
 
 alias abs='readlink -f'  # get absolute path of file/dir
