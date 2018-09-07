@@ -17,10 +17,13 @@ elif [[ "$(uname)" == "Darwin" ]]; then  # mac
   alias ls='ls -Gp'
   alias ll='ls -Glhp'
   alias la='ls -GlAhp'
+
+  alias tac='gtac'  # requires `brew install coreutils` beforehand
 fi
 
 alias mv='mv -iv'
 alias cp='cp -iv'
+alias rename='rename -v'
 
 alias df='df -h'
 
@@ -51,12 +54,17 @@ rsync-git() {
 }
 # rsync-git -acvz --delete /path/to/project/prj_dir remote:/path/to/project/
 
-
-alias sshrm='ssh-keygen -R'  # remove the entry from `known_hosts`.
+sshrm() {
+  ssh-keygen -R "$@"  # remove the entry from `known_hosts`.
+  ssh "$@"
+}
+# alias sshrm='ssh-keygen -R '  # remove the entry from `known_hosts`.
 
 alias abs='readlink -f'  # get absolute path of file/dir
 
 alias tree='tree -CF'  # C: color, F: Appends '/', '=', '*', '@', '|' or '>' as per ls -F.
+
+alias histfzy='history | tac | fzy'
 
 slack() {
   if [ -z "$SLACK_URL" ]; then
