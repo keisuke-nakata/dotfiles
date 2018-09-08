@@ -65,6 +65,7 @@ alias abs='readlink -f'  # get absolute path of file/dir
 alias tree='tree -CF'  # C: color, F: Appends '/', '=', '*', '@', '|' or '>' as per ls -F.
 
 alias histfzy='history | tac | fzy'
+alias hf='histfzy'
 
 slack() {
   if [ -z "$SLACK_URL" ]; then
