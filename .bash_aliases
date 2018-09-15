@@ -24,6 +24,7 @@ fi
 alias mv='mv -iv'
 alias cp='cp -iv'
 alias rename='rename -v'
+alias less='less -R'  # color sequence
 
 alias df='df -h'
 
@@ -35,7 +36,7 @@ alias ....='cd ../../../'
 alias targzx='tar zxvf'
 alias targzc='tar zcvf'
 
-alias rsync-git-core='rsync --exclude ".git" --exclude "__pycache__" -h'
+alias rsync-git-core='rsync --exclude ".git" --exclude "__pycache__" --exclude ".mypy_cache" -h'
 # rsync-git-core -acvz --delete /path/to/project/prj_dir remote:/path/to/project/ --dry-run
 
 rsync-git() {
