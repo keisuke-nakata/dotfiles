@@ -14,3 +14,16 @@ export HISTFILESIZE=100000
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+# for pyenv
+if [ -d ~/.pyenv/ ]; then
+    export PATH="/Users/keisuke.nakata/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+# for iterm2
+# this setting should be put at end.
+if [ -d ~/.iterm2/ ]; then
+    source ~/.iterm2_shell_integration.bash
+fi
