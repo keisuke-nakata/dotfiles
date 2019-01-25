@@ -7,6 +7,8 @@ if [[ "$(uname)" == "Linux" ]]; then  # linux
   alias ls='ls --color=auto -p'
   alias ll='ls --color=auto -lhp'
   alias la='ls --color=auto -lAhp'
+
+  alias abs='readlink -f'  # get absolute path of file/dir
 elif [[ "$(uname)" == "Darwin" ]]; then  # mac
   # G: color
   # l: long
@@ -17,6 +19,8 @@ elif [[ "$(uname)" == "Darwin" ]]; then  # mac
   alias ls='ls -Gp'
   alias ll='ls -Glhp'
   alias la='ls -GlAhp'
+
+  alias abs='greadlink -f'  # get absolute path of file/dir
 
   alias tac='gtac'  # requires `brew install coreutils` beforehand
 fi
@@ -61,8 +65,6 @@ sshrm() {
 }
 # alias sshrm='ssh-keygen -R '  # remove the entry from `known_hosts`.
 
-alias abs='readlink -f'  # get absolute path of file/dir
-
 alias tree='tree -CF'  # C: color, F: Appends '/', '=', '*', '@', '|' or '>' as per ls -F.
 
 alias histfzy='history | tac | fzy'
@@ -76,3 +78,9 @@ slack() {
     curl -X POST -H 'Content-type: application/json' --data '{"text":"'"$MESSAGE"'"}' ${SLACK_URL}
   fi
 }
+
+alias ipdb='python -m ipdb -c continue'
+
+if [ -f ~/.pfn_aliases ]; then
+    . ~/.pfn_aliases
+fi
