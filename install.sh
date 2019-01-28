@@ -4,9 +4,17 @@ set -Cuex
 
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-for d in ".tmux.conf" ".nanorc" ".nano"; do
-  ln -snfv ${HERE}/$d ${HOME}/$d
-done
+# sym link dotfiles
+for d in ".tmux.conf" ".nanorc" ".nano" ".bash_profile" ".bash_aliases" ".pfn_aliases"; do
+read -r -p "Sym-link ${d}? (may overwrite existing) [y/N] " response
+case "$response" in
+  [yY][eE][sS]|[yY])
+    ln -snfv ${HERE}/${d} ${HOME}/${d}
+    ;;
+  *)
+    echo "skip sym-linking ${d}"
+    ;;
+esac
 
 mkdir $HOME/bin
 
