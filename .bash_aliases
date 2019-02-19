@@ -40,6 +40,16 @@ alias ....='cd ../../../'
 alias targzx='tar zxvf'
 alias targzc='tar zcvf'
 
+git-pr() {  # git fetch pull-request's change into a new branch "PR/<id>".
+  if [ $# -eq 0 ]; then
+    echo "Error: Please specify pull-request number"
+    return 1
+  else
+    git fetch upstream pull/"$@"/head:PR/"$@"
+    echo "Branch PR/""$@"" is created/updated."
+  fi
+}
+
 alias rsync-git-core='rsync --exclude ".git" --exclude "__pycache__" --exclude ".mypy_cache" -h'
 # rsync-git-core -acvz --delete /path/to/project/prj_dir remote:/path/to/project/ --dry-run
 
