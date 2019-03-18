@@ -42,7 +42,7 @@ alias targzc='tar zcvf'
 
 git-pr() {  # git fetch pull-request's change into a new branch "PR/<id>".
   if [ $# -eq 0 ]; then
-    echo "Error: Please specify pull-request number"
+    echo "Error: Please specify pull-request number. Usage: git-pr 42"
     return 1
   else
     git fetch upstream pull/"$@"/head:PR/"$@"
