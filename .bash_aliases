@@ -94,3 +94,5 @@ alias ipdb='python -m ipdb -c continue'
 if [ -f ~/.pfn_aliases ]; then
     . ~/.pfn_aliases
 fi
+
+alias kc='kubectl'
