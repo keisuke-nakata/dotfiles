@@ -91,8 +91,9 @@ slack() {
 
 alias ipdb='python -m ipdb -c continue'
 
+alias kc='kubectl'
+alias kc-ls='kubectl get all -o=custom-columns=KIND:kind,NAME:metadata.name,STATUS:status.phase,CREATED_AT:status.startTime,PRIORITY:spec.priorityClassName,PODIP:status.podIP,HOSTIP:status.hostIP,RESOURCES:spec.containers[0].resources.requests'
+
 if [ -f ~/.pfn_aliases ]; then
     . ~/.pfn_aliases
 fi
-
-alias kc='kubectl'
