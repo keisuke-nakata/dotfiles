@@ -5,7 +5,7 @@ set -Cuex
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # sym link dotfiles
-for d in ".tmux.conf" ".nanorc" ".nano" ".bash_profile" ".bash_aliases" ".ssh/rc" ".pfn_aliases"; do
+for d in ".tmux.conf" ".nanorc" ".nano" ".bash_profile" ".bash_aliases" ".ssh/rc" ".pfn_aliases" ".secret_profile"; do
   read -r -p "Sym-link ${d}? (may overwrite existing) [y/N] " response
   case "$response" in
     [yY][eE][sS]|[yY])

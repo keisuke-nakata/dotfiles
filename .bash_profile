@@ -22,8 +22,16 @@ if [ -d ~/.pyenv/ ]; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
+# # for gcloud
+# export CLOUDSDK_PYTHON=/Users/thr3a/.pyenv/versions/2.7.12/bin/python
+# http://thr3a.hatenablog.com/entry/20180312/1520828533
+
 # for iterm2
 # this setting should be put at end.
 if [ -d ~/.iterm2/ ]; then
     source ~/.iterm2_shell_integration.bash
+fi
+
+if [ -f ~/.secret_profile ]; then
+    . ~/.secret_profile
 fi
