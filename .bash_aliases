@@ -92,14 +92,28 @@ slack() {
 alias ipdb='python -m ipdb -c continue'
 
 alias kc='kubectl'
-alias kc-ls='kubectl get all -o=custom-columns=KIND:kind,NAME:metadata.name,STATUS:status.phase,CREATED_AT:status.startTime,PRIORITY:spec.priorityClassName,PODIP:status.podIP,HOSTIP:status.hostIP,RESOURCES:spec.containers[0].resources.requests'
+alias kc-ls="kubectl get all -o=custom-columns=\
+KIND:kind,\
+NAME:metadata.name,\
+STATUS:status.phase,\
+ACTIVE:status.active,\
+FAILED:status.failed,\
+SUCCEEDED:status.succeeded,\
+CREATED_AT:status.startTime,\
+COMPLETED_AT:status.completionTime,\
+PRIORITY:spec.priorityClassName,\
+PRIORITY:spec.template.spec.priorityClassName,\
+PODIP:status.podIP,\
+HOSTIP:status.hostIP,\
+RESOURCES:spec.containers[0].resources.requests,\
+RESOURCES:spec.template.spec.containers[0].resources.limits"
 kc-nvidia-smi() {
   if [ $# -eq 0 ]; then
     echo "Error: Please specify <PodName>. Usage: kc-nvidia-smi <PodName>"
     return 1
   else
     kc exec "$@" nvidia-smi
-  fi  
+  fi
 }
 
 if [ -f ~/.pfn_aliases ]; then
