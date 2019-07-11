@@ -1,4 +1,4 @@
-export PATH=$HOME/local/bin:$HOME/bin:$PATH
+export PATH=$HOME/local/bin:$HOME/bin:/usr/local/opt/gettext/bin:$PATH
 
 export LD_LIBRARY_PATH=${HOME}/local/lib:$LD_LIBRARY_PATH
 
