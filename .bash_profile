@@ -4,6 +4,8 @@ export LD_LIBRARY_PATH=${HOME}/local/lib:$LD_LIBRARY_PATH
 
 export PS1='\[\e[0;36m\]\u@\h: \w\n\[\e[0;37m\]\$ '
 
+export EDITOR=nano
+
 # for history
 export HISTTIMEFORMAT='%F %T '
 export HISTFILESIZE=100000
