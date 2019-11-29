@@ -4,3 +4,15 @@
 
 # if you don't have tmux, see `readme_install_tmux.md`.
 # if you don't have iTerm2's shell integration, see "iTerm2>Install Shell Integration".
+
+
+# pyenv 内での python のインストールに困ったら
+
+呪文を唱える
+
+```bash
+CONFIGURE_OPTS="--with-openssl=$(brew --prefix openssl)" \
+CFLAGS="-I$(brew --prefix zlib)/include -I$(brew --prefix sqlite)/include" \
+LDFLAGS="-L$(brew --prefix zlib)/lib -L$(brew --prefix sqlite)/lib" \
+pyenv install 3.7.3
+```
