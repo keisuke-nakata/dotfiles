@@ -36,6 +36,7 @@ cd() { builtin cd "$@" && ls; }  # list directory upon 'cd'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
+mkcd() { mkdir -p "$1" && cd "$1"; }
 
 alias targzx='tar zxvf'
 alias targzc='tar zcvf'
