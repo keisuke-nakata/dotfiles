@@ -42,3 +42,14 @@ fi
 if [ -d ~/.iterm2/ ]; then
   source ~/.iterm2_shell_integration.bash
 fi
+
+# for airflow
+export AIRFLOW_HOME=${HOME}/.airflow
+
+# openssl
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+
+# poetry
+export PATH="$HOME/.poetry/bin:$PATH"
