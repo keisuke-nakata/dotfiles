@@ -2,7 +2,7 @@ export PATH=$HOME/local/bin:$HOME/bin:/usr/local/opt/gettext/bin:$PATH
 
 export LD_LIBRARY_PATH=${HOME}/local/lib:$LD_LIBRARY_PATH
 
-export PS1='\[\e[0;36m\]\u@\h: \w\n\[\e[0;37m\]\$ '
+export PS1='\[\e[0;36m\]\u@\h (\D{%Y-%m-%dT%H:%M:%S}): \w\n\[\e[0;37m\]\$ '
 
 export EDITOR=nano
 
