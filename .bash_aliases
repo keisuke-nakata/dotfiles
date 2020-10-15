@@ -122,3 +122,18 @@ kc-nvidia-smi() {
 if [ -f ~/.pfn_aliases ]; then
     . ~/.pfn_aliases
 fi
+
+black?() {
+  black --check --diff "$@"
+
+  read -r -p "Execute black? [y/N] " response
+  case "$response" in
+    [yY][eE][sS]|[yY])
+      echo ""
+      black "$@"
+      ;;
+    *)
+      echo "quit without black"
+      ;;
+  esac
+}
