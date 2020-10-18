@@ -76,3 +76,6 @@ fi
 # unset __conda_setup
 # # <<< conda initialize <<<
 #
+
+# nodebrew
+export PATH="$HOME/.nodebrew/current/bin:$PATH"
