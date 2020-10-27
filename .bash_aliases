@@ -126,6 +126,10 @@ fi
 black?() {
   black --check --diff "$@"
 
+  if [ $? -eq 0 ]; then
+    return 0;
+  fi
+
   read -r -p "Execute black? [y/N] " response
   case "$response" in
     [yY][eE][sS]|[yY])
@@ -136,4 +140,29 @@ black?() {
       echo "quit without black"
       ;;
   esac
+}
+
+isort?() {
+  isort --check-only "$@"
+
+  if [ $? -eq 0 ]; then
+    echo "isort: OK"
+    return 0;
+  fi
+
+  read -r -p "Execute isort? [y/N] " response
+  case "$response" in
+    [yY][eE][sS]|[yY])
+      echo ""
+      isort "$@"
+      ;;
+    *)
+      echo "quit without isort"
+      ;;
+  esac
+}
+
+lint?() {
+  isort? "$@"
+  black? "$@"
 }
