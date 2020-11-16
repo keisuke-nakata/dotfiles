@@ -143,7 +143,7 @@ black?() {
 }
 
 isort?() {
-  isort --check-only "$@"
+  isort --check-only --diff "$@"
 
   if [ $? -eq 0 ]; then
     echo "isort: OK"
