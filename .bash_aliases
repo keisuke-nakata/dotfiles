@@ -20,9 +20,10 @@ elif [[ "$(uname)" == "Darwin" ]]; then  # mac
   alias ll='ls -Glhp'
   alias la='ls -GlAhp'
 
+  # requires `brew install coreutils` beforehand
   alias abs='greadlink -f'  # get absolute path of file/dir
-
-  alias tac='gtac'  # requires `brew install coreutils` beforehand
+  alias tac='gtac'
+  alias sed='gsed'
 fi
 
 alias mv='mv -iv'
@@ -36,10 +37,6 @@ cd() { builtin cd "$@" && ls; }  # list directory upon 'cd'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
-mkcd() { mkdir -p "$1" && cd "$1"; }
-
-alias targzx='tar zxvf'
-alias targzc='tar zcvf'
 
 git-pr() {  # git fetch pull-request's change into a new branch "PR/<id>".
   if [ $# -eq 0 ]; then
@@ -52,7 +49,7 @@ git-pr() {  # git fetch pull-request's change into a new branch "PR/<id>".
 }
 
 alias rsync-git-core='rsync --exclude ".git" --exclude "__pycache__" --exclude ".mypy_cache" -h'
-# rsync-git-core -acvz --delete /path/to/project/prj_dir remote:/path/to/project/ --dry-run
+# Usage: rsync-git-core -acvz --delete /path/to/project/prj_dir remote:/path/to/project/ --dry-run
 
 rsync-git() {
   rsync-git-core "$@" --dry-run
@@ -68,18 +65,17 @@ rsync-git() {
       ;;
   esac
 }
-# rsync-git -acvz --delete /path/to/project/prj_dir remote:/path/to/project/
+# Usage: rsync-git -acvz --delete /path/to/project/prj_dir remote:/path/to/project/
 
-sshrm() {
-  ssh-keygen -R "$@"  # remove the entry from `known_hosts`.
-  ssh "$@"
-}
+# sshrm() {
+#   ssh-keygen -R "$@"  # remove the entry from `known_hosts`.
+#   ssh "$@"
+# }
 # alias sshrm='ssh-keygen -R '  # remove the entry from `known_hosts`.
 
 alias tree='tree -CF'  # C: color, F: Appends '/', '=', '*', '@', '|' or '>' as per ls -F.
 
 alias histfzy='history | tac | fzy'
-alias hf='histfzy'
 
 alias atom='atom -a'  # open file within the existing atom window
 
@@ -95,29 +91,6 @@ slack() {
 alias ipdb='python -m ipdb -c continue'
 
 alias kc='kubectl'
-alias kc-ls="kubectl get all -o=custom-columns=\
-KIND:kind,\
-NAME:metadata.name,\
-STATUS:status.phase,\
-ACTIVE:status.active,\
-FAILED:status.failed,\
-SUCCEEDED:status.succeeded,\
-CREATED_AT:status.startTime,\
-COMPLETED_AT:status.completionTime,\
-PRIORITY:spec.priorityClassName,\
-PRIORITY:spec.template.spec.priorityClassName,\
-PODIP:status.podIP,\
-HOSTIP:status.hostIP,\
-RESOURCES:spec.containers[0].resources.requests,\
-RESOURCES:spec.template.spec.containers[0].resources.limits"
-kc-nvidia-smi() {
-  if [ $# -eq 0 ]; then
-    echo "Error: Please specify <PodName>. Usage: kc-nvidia-smi <PodName>"
-    return 1
-  else
-    kc exec "$@" nvidia-smi
-  fi
-}
 
 if [ -f ~/.pfn_aliases ]; then
     . ~/.pfn_aliases
