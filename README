@@ -8,11 +8,4 @@
 
 # pyenv 内での python のインストールに困ったら
 
-呪文を唱える
-
-```bash
-CONFIGURE_OPTS="--with-openssl=$(brew --prefix openssl)" \
-CFLAGS="-I$(brew --prefix zlib)/include -I$(brew --prefix sqlite)/include" \
-LDFLAGS="-L$(brew --prefix zlib)/lib -L$(brew --prefix sqlite)/lib" \
-pyenv install 3.7.3
-```
+https://github.com/pyenv/pyenv/wiki/Common-build-problems
