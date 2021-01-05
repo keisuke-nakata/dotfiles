@@ -12,14 +12,27 @@ export HISTFILESIZE=100000  # HISTFILE save size
 export HISTSIZE=100000  # bash history size
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # for pyenv
 if [ -d ~/.pyenv/ ]; then
-    export PATH="/Users/keisuke.nakata/.pyenv/bin:$PATH"
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
+  export PATH="/Users/keisuke.nakata/.pyenv/bin:$PATH"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+  # pyenv-virtualenv: prompt changing will be removed from future release. configure `export PYENV_VIRTUALENV_DISABLE_PROMPT=1' to simulate the behavior.
+  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+  # https://github.com/pyenv/pyenv-virtualenv/issues/135#issuecomment-754414842
+  export BASE_PROMPT=$PS1
+  function updatePrompt {
+    PYENV_VER=$(pyenv version-name)                 # capture version name in variable
+    if [[ "${PYENV_VER}" != "$(pyenv global | paste -sd ':' -)" ]]; then
+      export PS1="(${PYENV_VER%%:*}) "$BASE_PROMPT  # grab text prior to first ':' character
+    else
+      export PS1=$BASE_PROMPT
+    fi
+  }
+  export PROMPT_COMMAND='updatePrompt'
 fi
 
 # # for jenv
