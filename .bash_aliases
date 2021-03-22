@@ -48,7 +48,7 @@ git-pr() {  # git fetch pull-request's change into a new branch "PR/<id>".
   fi
 }
 
-alias rsync-git-core='rsync --exclude ".git" --exclude "__pycache__" --exclude ".mypy_cache" -h'
+alias rsync-git-core='rsync --exclude ".git" --exclude "__pycache__" --exclude ".mypy_cache" --exclude \".eggs\" --exclude \"*.egg-info\" -h'
 # Usage: rsync-git-core -acvz --delete /path/to/project/prj_dir remote:/path/to/project/ --dry-run
 
 rsync-git() {
