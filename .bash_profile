@@ -35,11 +35,11 @@ if [ -d ~/.pyenv/ ]; then
   export PROMPT_COMMAND='updatePrompt'
 fi
 
-# # for jenv
-# if [ -d ~/.jenv/ ]; then
-#   export PATH="$HOME/.jenv/bin:$PATH"
-#   eval "$(jenv init -)"
-# fi
+# for jenv
+if [ -d ~/.jenv/ ]; then
+  # export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
+fi
 
 if [ -f ~/.secret_profile ]; then
   . ~/.secret_profile
