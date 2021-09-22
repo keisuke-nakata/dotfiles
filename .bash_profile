@@ -67,3 +67,6 @@ export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 if [ -f ~/.bash_completion.d/complete_alias ]; then
   . ~/.bash_completion.d/complete_alias
 fi
+
+# RUST
+. "$HOME/.cargo/env"
