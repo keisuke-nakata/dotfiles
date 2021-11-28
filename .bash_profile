@@ -15,7 +15,7 @@ if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
 
-# for pyenv
+# for pyenv (via homebrew)
 if [ -d ~/.pyenv/ ]; then
   export PATH="/Users/keisuke.nakata/.pyenv/bin:$PATH"
   eval "$(pyenv init -)"
@@ -71,6 +71,11 @@ fi
 # RUST
 . "$HOME/.cargo/env"
 
-# gcloud (from homebrew)
+# gcloud (via homebrew)
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+
+# NVM (via homebrew)
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
