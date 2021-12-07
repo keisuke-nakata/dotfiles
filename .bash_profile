@@ -22,17 +22,6 @@ if [ -d ~/.pyenv/ ]; then
   eval "$(pyenv virtualenv-init -)"
   # pyenv-virtualenv: prompt changing will be removed from future release. configure `export PYENV_VIRTUALENV_DISABLE_PROMPT=1' to simulate the behavior.
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-  # https://github.com/pyenv/pyenv-virtualenv/issues/135#issuecomment-754414842
-  export BASE_PROMPT=$PS1
-  function updatePrompt {
-    PYENV_VER=$(pyenv version-name)                 # capture version name in variable
-    if [[ "${PYENV_VER}" != "$(pyenv global | paste -sd ':' -)" ]]; then
-      export PS1="(${PYENV_VER%%:*}) "$BASE_PROMPT  # grab text prior to first ':' character
-    else
-      export PS1=$BASE_PROMPT
-    fi
-  }
-  export PROMPT_COMMAND='updatePrompt'
 fi
 
 # for jenv
@@ -79,3 +68,19 @@ source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# update prompt
+export BASE_PROMPT=$PS1
+function updatePrompt {
+  # https://github.com/pyenv/pyenv-virtualenv/issues/135#issuecomment-754414842
+  PYENV_VER=$(pyenv version-name)                 # capture version name in variable
+  if [[ "${PYENV_VER}" != "$(pyenv global | paste -sd ':' -)" ]]; then
+    export PS1="(${PYENV_VER%%:*}) "$BASE_PROMPT  # grab text prior to first ':' character
+  else
+    export PS1=$BASE_PROMPT
+  fi
+
+  # # nvm
+  # NODE_VER=$(node -v)
+}
+export PROMPT_COMMAND='updatePrompt'
