@@ -159,3 +159,6 @@ difff() {
   diff -u "$@" | diff-so-fancy
 }
 
+# "brew isntall util-linux" が必要。
+# なお、この方法で入る column は -n option を指定しなくても勝手に null を判別してくれる。
+alias column='/usr/local/opt/util-linux/bin/column'
