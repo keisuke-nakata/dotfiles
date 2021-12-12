@@ -154,3 +154,8 @@ lint?() {
   isort? "$@"
   black? "$@"
 }
+
+difff() {
+  diff -u "$@" | diff-so-fancy
+}
+
