@@ -15,14 +15,27 @@ if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
 
-# for pyenv (via homebrew)
-if [ -d ~/.pyenv/ ]; then
-  export PATH="/Users/keisuke.nakata/.pyenv/bin:$PATH"
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-  # pyenv-virtualenv: prompt changing will be removed from future release. configure `export PYENV_VIRTUALENV_DISABLE_PROMPT=1' to simulate the behavior.
-  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-fi
+# for pyenv (via https://github.com/pyenv/pyenv-installer)
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+# if [ -n "$PS1" -a -n "$BASH_VERSION" ]; then source ~/.bashrc; fi
+
+eval "$(pyenv init -)"
+
+eval "$(pyenv virtualenv-init -)"
+# pyenv-virtualenv: prompt changing will be removed from future release. configure `export PYENV_VIRTUALENV_DISABLE_PROMPT=1' to simulate the behavior.
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
+# old pyenv init
+# if [ -d ~/.pyenv/ ]; then
+#   export PATH="/Users/keisuke.nakata/.pyenv/bin:$PATH"
+#   # eval "$(pyenv init --path)"
+#   eval "$(pyenv init -)"
+#   eval "$(pyenv virtualenv-init -)"
+#   # pyenv-virtualenv: prompt changing will be removed from future release. configure `export PYENV_VIRTUALENV_DISABLE_PROMPT=1' to simulate the behavior.
+#   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+# fi
 
 # for jenv
 if [ -d ~/.jenv/ ]; then
