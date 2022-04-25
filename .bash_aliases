@@ -112,9 +112,11 @@ if [ -f ~/.pfn_aliases ]; then
 fi
 
 black?() {
-  black --check --diff "$@"
+  echo -n "black..."
+  black --check --diff -q "$@"
 
   if [ $? -eq 0 ]; then
+    echo "OK"
     return 0;
   fi
 
@@ -122,7 +124,7 @@ black?() {
   case "$response" in
     [yY][eE][sS]|[yY])
       echo ""
-      black "$@"
+      black -q "$@"
       ;;
     *)
       echo "quit without black"
@@ -131,10 +133,11 @@ black?() {
 }
 
 isort?() {
+  echo -n "isort..."
   isort --check-only --diff "$@"
 
   if [ $? -eq 0 ]; then
-    echo "isort: OK"
+    echo "OK"
     return 0;
   fi
 
