@@ -92,8 +92,6 @@ alias tree='tree -CF'  # C: color, F: Appends '/', '=', '*', '@', '|' or '>' as 
 
 alias histfzy='history | tac | fzy'
 
-alias atom='atom -a'  # open file within the existing atom window
-
 slack() {
   if [ -z "$SLACK_URL" ]; then
     echo "Please set environment variable SLACK_URL."
@@ -102,8 +100,6 @@ slack() {
     curl -X POST -H 'Content-type: application/json' --data '{"text":"'"$MESSAGE"'"}' ${SLACK_URL}
   fi
 }
-
-alias ipdb='python -m ipdb -c continue'
 
 alias kc='kubectl'
 
