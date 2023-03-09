@@ -21,7 +21,8 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 # if [ -n "$PS1" -a -n "$BASH_VERSION" ]; then source ~/.bashrc; fi
 
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
+eval "$(pyenv init - --no-rehash)"
 
 eval "$(pyenv virtualenv-init -)"
 # pyenv-virtualenv: prompt changing will be removed from future release. configure `export PYENV_VIRTUALENV_DISABLE_PROMPT=1' to simulate the behavior.
