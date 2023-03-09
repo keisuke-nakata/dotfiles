@@ -43,7 +43,7 @@ git-pr() {  # git fetch pull-request's change into a new branch "PR/<id>".
     echo "Error: Please specify pull-request number. Usage: git-pr 42"
     return 1
   else
-    git fetch upstream pull/"$@"/head:PR/"$@"
+    git fetch upstream pull/"$@"/head:PR/"$@" --update-head-ok  # https://stackoverflow.com/a/19205680/2500650
     echo "Branch PR/""$@"" is created/updated."
   fi
 }
