@@ -56,21 +56,6 @@ export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 # poetry
 export PATH="$HOME/.poetry/bin:$PATH"
 
-# for iterm2
-# this setting should be put at end.
-if [ -d ~/.iterm2/ ]; then
-  source ~/.iterm2_shell_integration.bash
-fi
-
-# This should be put the last!
-# for bash completion
-export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-
-if [ -f ~/.bash_completion.d/complete_alias ]; then
-  . ~/.bash_completion.d/complete_alias
-fi
-
 # RUST
 . "$HOME/.cargo/env"
 
@@ -104,3 +89,18 @@ function updatePrompt {
   # NODE_VER=$(node -v)
 }
 export PROMPT_COMMAND='updatePrompt'
+
+# for iterm2
+# this setting should be put at end.
+if [ -d ~/.iterm2/ ]; then
+  source ~/.iterm2_shell_integration.bash
+fi
+
+# This should be put the last!
+# for bash completion
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+if [ -f ~/.bash_completion.d/complete_alias ]; then
+  . ~/.bash_completion.d/complete_alias
+fi
