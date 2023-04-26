@@ -28,16 +28,6 @@ eval "$(pyenv virtualenv-init -)"
 # pyenv-virtualenv: prompt changing will be removed from future release. configure `export PYENV_VIRTUALENV_DISABLE_PROMPT=1' to simulate the behavior.
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
-# old pyenv init
-# if [ -d ~/.pyenv/ ]; then
-#   export PATH="/Users/keisuke.nakata/.pyenv/bin:$PATH"
-#   # eval "$(pyenv init --path)"
-#   eval "$(pyenv init -)"
-#   eval "$(pyenv virtualenv-init -)"
-#   # pyenv-virtualenv: prompt changing will be removed from future release. configure `export PYENV_VIRTUALENV_DISABLE_PROMPT=1' to simulate the behavior.
-#   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-# fi
-
 # for jenv
 if [ -d ~/.jenv/ ]; then
   # export PATH="$HOME/.jenv/bin:$PATH"
@@ -60,8 +50,8 @@ export PATH="$HOME/.poetry/bin:$PATH"
 . "$HOME/.cargo/env"
 
 # gcloud (via homebrew)
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+source "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc"
+source "$(brew --prefix)/share/google-cloud-sdk/completion.bash.inc"
 
 # NVM (via homebrew)
 export NVM_DIR="$HOME/.nvm"
