@@ -23,16 +23,17 @@ if archive_dir.exists():
     sys.exit()
 logger.debug("Archiving Downloads...")
 
-yyyymmdd_pat = re.compile(r"202\d(0[1-9]|10|11|12)([012]\d|30|31)$")
-moving_targets = (
+yyyymmdd_pat = re.compile(r"^202\d(0[1-9]|10|11|12)([012]\d|30|31)$")
+moving_targets = [
     f for f in downloads_dir.iterdir()
     if not (f.is_dir() and re.match(yyyymmdd_pat, f.name) is not None)
-)
+]
+
+if len(moving_targets) == 0:
+    logger.debug("There is no new Downloads.")
+    sys.exit()
 
 archive_dir.mkdir(exist_ok=False)
 for moving_target in moving_targets:
     shutil.move(moving_target, archive_dir)
-else:
-    archive_dir.rmdir()
-    logger.debug("There is no new Downloads.")
 logger.info("Archiving Downloads... done.")
