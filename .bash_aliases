@@ -69,7 +69,8 @@ rsync-git() {
 # Usage: rsync-git -acvz --delete /path/to/project/prj_dir remote:/path/to/project/
 
 
-black?() {
+# black?() {} と書くのが推奨だけど、本来 "?" はワイルドカードなのでコマンド名に使えないので、古いスタイルの関数定義を使う
+function black? {
   echo -n "black..."
   black --check --diff -q "$@"
 
@@ -90,7 +91,7 @@ black?() {
   esac
 }
 
-isort?() {
+function isort? {
   echo -n "isort..."
   isort --check-only --diff "$@"
 
@@ -111,7 +112,7 @@ isort?() {
   esac
 }
 
-lint?() {
+function lint? {
   isort? "$@"
   black? "$@"
 }
