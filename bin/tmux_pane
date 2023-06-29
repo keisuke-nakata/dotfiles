@@ -1,8 +1,0 @@
-#!/bin/sh
-tmux new-session \; \
-  send-keys 'pyenv activate myrl' C-m \; \
-  split-window -v -p 40 \; \
-  send-keys 'htop' C-m \; \
-  split-window -h -p 35 \; \
-  send-keys 'watch -d -n 1 nvidia-smi' C-m \; \
-  select-pane -t 0 \;
