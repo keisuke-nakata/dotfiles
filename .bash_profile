@@ -1,3 +1,5 @@
+# Mac 用に書いているので、Linux 向けには適当に内容を選んで、デフォルトの ~/.bashrc を編集してください
+
 export PATH=$HOME/local/bin:$HOME/bin:/usr/local/opt/gettext/bin:/usr/local/sbin:$PATH
 
 export LD_LIBRARY_PATH=${HOME}/local/lib:$LD_LIBRARY_PATH
@@ -6,14 +8,30 @@ export PS1='\[\e[0;36m\]\u@\h (\D{%Y-%m-%dT%H:%M:%S}): \w\n\[\e[0;37m\]\$ '
 
 export EDITOR=nano
 
+###
 # for history
-export HISTTIMEFORMAT='%F %T '
-export HISTFILESIZE=100000  # HISTFILE save size
-export HISTSIZE=100000  # bash history size
+###
+HISTTIMEFORMAT='%F %T '
+HISTSIZE=10000  # bash history size
+HISTFILESIZE=10000  # HISTFILE save size
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
 
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
+
 
 # for pyenv (via https://github.com/pyenv/pyenv-installer)
 export PYENV_ROOT="$HOME/.pyenv"

@@ -1,0 +1,12 @@
+# Linux で設定したいものだけに絞った aliases
+
+# l: long
+# h: humanize disk usage
+# a: show hiddens
+# A: show hiddens except `.` and `..`
+# p: trailing directory mark `/`
+alias ls='ls --color=auto -p'
+alias ll='ls --color=auto -lhp'
+alias la='ls --color=auto -lAhp'
+
+alias abs='readlink -f'  # get absolute path of file/dir

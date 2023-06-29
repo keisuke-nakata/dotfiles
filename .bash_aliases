@@ -1,37 +1,22 @@
+# Mac/Linx 共通で設定したい aliases
+
 if [[ "$(uname)" == "Linux" ]]; then  # linux
-  # l: long
-  # h: humanize disk usage
-  # a: show hiddens
-  # A: show hiddens except `.` and `..`
-  # p: trailing directory mark `/`
-  alias ls='ls --color=auto -p'
-  alias ll='ls --color=auto -lhp'
-  alias la='ls --color=auto -lAhp'
-
-  alias abs='readlink -f'  # get absolute path of file/dir
+  if [ -f ~/.bash_aliases.linux ]; then
+      . ~/.bash_aliases.linux
+  fi
 elif [[ "$(uname)" == "Darwin" ]]; then  # mac
-  # G: color
-  # l: long
-  # h: humanize disk usage
-  # a: show hiddens
-  # A: show hiddens except `.` and `..`
-  # p: trailing directory mark `/`
-  alias ls='ls -Gp'
-  alias ll='ls -Glhp'
-  alias la='ls -GlAhp'
-
-  # requires `brew install coreutils` beforehand
-  alias abs='greadlink -f'  # get absolute path of file/dir
-  alias tac='gtac'
-  alias sed='gsed'
+  if [ -f ~/.bash_aliases.macos ]; then
+      . ~/.bash_aliases.macos
+  fi
 fi
 
 alias mv='mv -iv'
 alias cp='cp -iv'
 alias rename='rename -v'
 alias less='less -R'  # color sequence
-
-alias df='df -h'
+alias tree='tree -CF'  # C: color, F: Appends '/', '=', '*', '@', '|' or '>' as per ls -F.
+alias histfzy='history | tac | fzy'
+alias kc='kubectl'
 
 cd() { builtin cd "$@" && ls; }  # list directory upon 'cd'
 alias ..='cd ../'
@@ -63,6 +48,7 @@ git-prune-untracked() {
   esac
 }
 
+
 alias rsync-git-core='rsync --exclude ".git" --exclude "__pycache__" --exclude ".mypy_cache" --exclude \".eggs\" --exclude \"*.egg-info\" -h'
 # Usage: rsync-git-core -acvz --delete /path/to/project/prj_dir remote:/path/to/project/ --dry-run
 
@@ -82,30 +68,6 @@ rsync-git() {
 }
 # Usage: rsync-git -acvz --delete /path/to/project/prj_dir remote:/path/to/project/
 
-# sshrm() {
-#   ssh-keygen -R "$@"  # remove the entry from `known_hosts`.
-#   ssh "$@"
-# }
-# alias sshrm='ssh-keygen -R '  # remove the entry from `known_hosts`.
-
-alias tree='tree -CF'  # C: color, F: Appends '/', '=', '*', '@', '|' or '>' as per ls -F.
-
-alias histfzy='history | tac | fzy'
-
-slack() {
-  if [ -z "$SLACK_URL" ]; then
-    echo "Please set environment variable SLACK_URL."
-  else
-    MESSAGE=$1
-    curl -X POST -H 'Content-type: application/json' --data '{"text":"'"$MESSAGE"'"}' ${SLACK_URL}
-  fi
-}
-
-alias kc='kubectl'
-
-if [ -f ~/.pfn_aliases ]; then
-    . ~/.pfn_aliases
-fi
 
 black?() {
   echo -n "black..."
@@ -157,10 +119,3 @@ lint?() {
 difff() {
   diff -u "$@" | diff-so-fancy
 }
-
-# "brew isntall util-linux" が必要。
-# なお、この方法で入る column は -n option を指定しなくても勝手に null を判別してくれる。
-alias column='/usr/local/opt/util-linux/bin/column'
-
-# コンソールから開かないと PATH を引き継げないらしい
-alias sourcetree='open /Applications/Sourcetree.app/Contents/MacOS/Sourcetree &'
