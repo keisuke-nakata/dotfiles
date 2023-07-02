@@ -67,9 +67,9 @@ export PATH="$HOME/.poetry/bin:$PATH"
 # RUST
 . "$HOME/.cargo/env"
 
-# gcloud (via homebrew)
-source "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc"
-source "$(brew --prefix)/share/google-cloud-sdk/completion.bash.inc"
+# google cloud sdk
+if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk/path.bash.inc"; fi
+if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then . "$HOME/google-cloud-sdk/completion.bash.inc"; fi
 
 # NVM (via homebrew)
 export NVM_DIR="$HOME/.nvm"
