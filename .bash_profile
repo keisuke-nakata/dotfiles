@@ -67,6 +67,9 @@ export PATH="$HOME/.poetry/bin:$PATH"
 # RUST
 . "$HOME/.cargo/env"
 
+# Golang
+export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
+
 # google cloud sdk
 if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk/path.bash.inc"; fi
 if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then . "$HOME/google-cloud-sdk/completion.bash.inc"; fi
