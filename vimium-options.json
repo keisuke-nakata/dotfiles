@@ -1,0 +1,31 @@
+{
+  "keyMappings": "unmapAll\n\nmap <c-n> scrollDown\nmap <c-p> scrollUp\nmap gg scrollToTop\nmap G scrollToBottom\nmap r reload\nmap f LinkHints.activateMode\nmap ;t LinkHints.activateModeWithQueue\nmap F LinkHints.activateModeToOpenInNewForegroundTab\nmap <c-b> goBack\nmap <c-f> goForward\nmap <c-j> nextTab\nmap <c-k> previousTab\nmap dd removeTab\nmap [ goPrevious\nmap ] goNext",
+  "scrollStepSize": 120,
+  "settingsVersion": "2.1.2",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https?://mail.google.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://localhost:6901/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://localhost:16901/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://localhost:26901/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://app.gather.town/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://localhost:8888/*"
+    }
+  ]
+}
