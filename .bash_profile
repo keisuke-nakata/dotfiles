@@ -35,7 +35,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 ###
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1  # pyenv-virtualenv: prompt changing will be removed from future release. configure `export PYENV_VIRTUALENV_DISABLE_PROMPT=1' to simulate the behavior.
 
@@ -60,6 +60,7 @@ export PROMPT_COMMAND='updatePrompt'
 if [ -d ~/.jenv/ ]; then
   export PATH="$HOME/.jenv/bin:$PATH"
   eval "$(jenv init -)"
+  # jenv enable-plugin export
 fi
 
 ###
