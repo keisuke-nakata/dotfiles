@@ -6,8 +6,8 @@
     <string>DownloadArchive</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/Users/keisuke.nakata/.pyenv/versions/3.9.12/bin/python3.9</string>
-        <string>/Users/keisuke.nakata/Projects/dotfiles/launchd/download_archive.py</string>
+        <string>/Users/nakata/.pyenv/shims/python</string>
+        <string>/Users/nakata/Projects/dotfiles/launchd/download_archive.py</string>
     </array>
     <key>StartCalendarInterval</key>
     <dict>
@@ -17,9 +17,9 @@
         <integer>0</integer>
     </dict>
     <key>StandardOutPath</key>
-    <string>/Users/keisuke.nakata/tmp/Launchd_DownloadArchive.out</string>
+    <string>/Users/nakata/tmp/Launchd_DownloadArchive.out</string>
     <key>StandardErrorPath</key>
-    <string>/Users/keisuke.nakata/tmp/Launchd_DownloadArchive.err</string>
+    <string>/Users/nakata/tmp/Launchd_DownloadArchive.err</string>
     <key>UserName</key>
     <string>keisuke.nakata</string>
 </dict>
