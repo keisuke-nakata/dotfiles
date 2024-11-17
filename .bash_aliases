@@ -16,7 +16,7 @@ alias rename='rename -v'
 alias less='less -R'  # color sequence
 alias tree='tree -CF'  # C: color, F: Appends '/', '=', '*', '@', '|' or '>' as per ls -F.
 alias histfzy='history | tac | fzy'
-alias kc='kubectl'
+alias kc='kubectl' && complete -F _complete_alias kc
 
 cd() { builtin cd "$@" && ls; }  # list directory upon 'cd'
 alias ..='cd ../'

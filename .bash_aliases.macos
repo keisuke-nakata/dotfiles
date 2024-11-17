@@ -11,18 +11,10 @@ alias ll='ls -Glhp'
 alias la='ls -GlAhp'
 
 # requires `brew install coreutils` beforehand
-alias abs='greadlink -f'  # get absolute path of file/dir
+alias abs='greadlink -f'
 alias tac='gtac'
-alias sed='gsed'
+#alias sed='gsed'
 
-# "brew isntall util-linux" が必要。
+# "brew install util-linux" が必要。
 # なお、この方法で入る column は -n option を指定しなくても勝手に null を判別してくれる。
-alias column='/usr/local/opt/util-linux/bin/column'
-
-# コンソールから開かないと PATH を引き継げないらしい
-alias sourcetree='open /Applications/Sourcetree.app/Contents/MacOS/Sourcetree &'
-
-
-if [ -f ~/.pfn_aliases ]; then
-    . ~/.pfn_aliases
-fi
+alias column='/opt/homebrew/opt/util-linux/bin/column'

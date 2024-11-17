@@ -1,1 +1,1 @@
-include ~/.nano/syntax/ALL.nanorc
+include ~/Projects/nanorc/*.nanorc

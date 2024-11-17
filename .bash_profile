@@ -1,89 +1,43 @@
+###
 # Mac 用に書いているので、Linux 向けには適当に内容を選んで、デフォルトの ~/.bashrc を編集してください
+###
 
 export PATH=$HOME/local/bin:$HOME/bin:/usr/local/opt/gettext/bin:/usr/local/sbin:$PATH
-
 export LD_LIBRARY_PATH=${HOME}/local/lib:$LD_LIBRARY_PATH
-
 export PS1='\[\e[0;36m\]\u@\h (\D{%Y-%m-%dT%H:%M:%S}): \w\n\[\e[0;37m\]\$ '
-
 export EDITOR=nano
-
-###
-# for history
-###
-HISTTIMEFORMAT='%F %T '
-HISTSIZE=10000  # bash history size
-HISTFILESIZE=10000  # HISTFILE save size
-
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
 
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
 
+shopt -s checkwinsize  # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 
-# for pyenv (via https://github.com/pyenv/pyenv-installer)
+export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo  # https://gpanders.com/blog/the-definitive-guide-to-using-tmux-256color-on-macos/
+
+###
+# history
+###
+HISTTIMEFORMAT='%F %T '
+HISTSIZE=10000  # bash history size
+HISTFILESIZE=10000  # HISTFILE save size
+HISTCONTROL=ignoreboth  # don't put duplicate lines or lines starting with space in the history. See bash(1) for more options
+shopt -s histappend  # append to the history file, don't overwrite it
+
+###
+# homebrew
+###
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+###
+# pyenv (via https://github.com/pyenv/pyenv-installer)
+# & python
+###
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
-# if [ -n "$PS1" -a -n "$BASH_VERSION" ]; then source ~/.bashrc; fi
-
-# eval "$(pyenv init -)"
-eval "$(pyenv init - --no-rehash)"
-
 eval "$(pyenv virtualenv-init -)"
-# pyenv-virtualenv: prompt changing will be removed from future release. configure `export PYENV_VIRTUALENV_DISABLE_PROMPT=1' to simulate the behavior.
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-
-# for jenv
-if [ -d ~/.jenv/ ]; then
-  # export PATH="$HOME/.jenv/bin:$PATH"
-  eval "$(jenv init -)"
-fi
-
-if [ -f ~/.secret_profile ]; then
-  . ~/.secret_profile
-fi
-
-# openssl
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
-
-# poetry
-export PATH="$HOME/.poetry/bin:$PATH"
-
-# RUST
-. "$HOME/.cargo/env"
-
-# Golang
-export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
-
-# google cloud sdk
-if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk/path.bash.inc"; fi
-if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then . "$HOME/google-cloud-sdk/completion.bash.inc"; fi
-
-# NVM (via homebrew)
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-# gvm (https://github.com/moovweb/gvm)
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-
-# https://gpanders.com/blog/the-definitive-guide-to-using-tmux-256color-on-macos/
-export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1  # pyenv-virtualenv: prompt changing will be removed from future release. configure `export PYENV_VIRTUALENV_DISABLE_PROMPT=1' to simulate the behavior.
 
 # update prompt
 export BASE_PROMPT=$PS1
@@ -95,25 +49,46 @@ function updatePrompt {
   else
     export PS1=$BASE_PROMPT
   fi
-
-  # # nvm
-  # NODE_VER=$(node -v)
 }
 export PROMPT_COMMAND='updatePrompt'
 
-# for iterm2
-# this setting should be put at end.
-if [ -d ~/.iterm2/ ]; then
-  source ~/.iterm2_shell_integration.bash
+# PYTHONBREAKPOINT=ipdb.set_trace
+
+###
+# jenv (via homebrew)
+###
+if [ -d ~/.jenv/ ]; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
 fi
 
-# This should be put the last!
-# for bash completion
-export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+###
+# openssl
+###
+# export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+# export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+# export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 
+###
+# google cloud sdk (gcloud, gsutil, bq)
+###
+if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk/path.bash.inc"; fi
+if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then . "$HOME/google-cloud-sdk/completion.bash.inc"; fi
+
+###
+# NVM (via homebrew)
+###
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+
+###
+# completion (via `brew install bash-completion@2`)
+###
+# bash completion for brew-installed commands
+# `bash-completion@2` requries bash 4.2+. see readme_update_bash.md
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+# alias completion (https://github.com/cykerway/complete-alias)
 if [ -f ~/.bash_completion.d/complete_alias ]; then
   . ~/.bash_completion.d/complete_alias
 fi
-
-PYTHONBREAKPOINT=ipdb.set_trace
+export BASH_COMPLETION_USER_DIR="$HOME/.bash_completion.d"  # https://github.com/scop/bash-completion?tab=readme-ov-file#faq
