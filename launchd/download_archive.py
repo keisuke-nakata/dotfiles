@@ -6,7 +6,7 @@ import shutil
 import sys
 
 PROGRAM_NAME = "DownloadArchive"
-DIR = Path("/Users/keisuke.nakata/Downloads")
+DIR = Path("/Users/nakata/Downloads")
 
 # setting up logger
 ch = logging.StreamHandler()
