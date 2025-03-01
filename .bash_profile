@@ -2,17 +2,12 @@
 # Mac 用に書いているので、Linux 向けには適当に内容を選んで、デフォルトの ~/.bashrc を編集してください
 ###
 
+shopt -s checkwinsize  # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
+
 export PATH=$HOME/local/bin:$HOME/bin:/usr/local/opt/gettext/bin:/usr/local/sbin:$PATH
 export LD_LIBRARY_PATH=${HOME}/local/lib:$LD_LIBRARY_PATH
 export PS1='\[\e[0;36m\]\u@\h (\D{%Y-%m-%dT%H:%M:%S}): \w\n\[\e[0;37m\]\$ '
 export EDITOR=nano
-
-if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
-fi
-
-shopt -s checkwinsize  # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
-
 export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo  # https://gpanders.com/blog/the-definitive-guide-to-using-tmux-256color-on-macos/
 
 ###
@@ -83,6 +78,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 
 ###
+# uv & uv tools
+###
+. "$HOME/.local/bin/env"
+
+###
 # completion (via `brew install bash-completion@2`)
 ###
 # bash completion for brew-installed commands
@@ -93,3 +93,10 @@ if [ -f ~/.bash_completion.d/complete_alias ]; then
   . ~/.bash_completion.d/complete_alias
 fi
 export BASH_COMPLETION_USER_DIR="$HOME/.bash_completion.d"  # https://github.com/scop/bash-completion?tab=readme-ov-file#faq
+
+###
+# aliases
+###
+if [ -f ~/.bash_aliases ]; then
+  . ~/.bash_aliases
+fi
