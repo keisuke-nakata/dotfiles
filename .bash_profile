@@ -83,6 +83,11 @@ export NVM_DIR="$HOME/.nvm"
 . "$HOME/.local/bin/env"
 
 ###
+# pfbuild
+###
+export PFBUILD_BUILDCTL=$HOME/bin/buildctl
+
+###
 # completion (via `brew install bash-completion@2`)
 ###
 # bash completion for brew-installed commands
