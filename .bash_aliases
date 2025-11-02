@@ -110,3 +110,9 @@ function lint? {
 difff() {
   diff -u "$@" | diff-so-fancy
 }
+
+# see https://github.com/keisuke-nakata/texlive-ja/blob/main/Makefile
+latexmk() {
+  local cmd="latexmk $@"
+	docker run --rm -it -v ${PWD}:/workdir texlive-ja:latest sh -c "${cmd}"
+}
