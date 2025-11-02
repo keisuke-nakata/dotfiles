@@ -88,6 +88,11 @@ export NVM_DIR="$HOME/.nvm"
 export PFBUILD_BUILDCTL=$HOME/bin/buildctl
 
 ###
+# Rancher Desktop
+###
+export PATH=$HOME/.rd/bin:$PATH
+
+###
 # completion (via `brew install bash-completion@2`)
 ###
 # bash completion for brew-installed commands
