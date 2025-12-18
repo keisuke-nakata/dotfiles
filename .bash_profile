@@ -93,6 +93,12 @@ export PFBUILD_BUILDCTL=$HOME/bin/buildctl
 export PATH=$HOME/.rd/bin:$PATH
 
 ###
+# krew
+###
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+
+###
 # completion (via `brew install bash-completion@2`)
 ###
 # bash completion for brew-installed commands
