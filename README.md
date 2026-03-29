@@ -1,3 +1,5 @@
+# **FIXME: `gnu stow` を利用する**
+
 各種コマンド・ツールのインストールについては、 `readme_<ツール名>.md` を参照。
 
 ## if you don't have iTerm2's shell integration, see "iTerm2>Install Shell Integration".
