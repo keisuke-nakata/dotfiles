@@ -2,6 +2,7 @@ symlink を張りたいファイルの一覧のメモ書き。このスクリプ
 
 ```bash
 ln -s ~/Projects/dotfiles/.bash_profile ~/.bash_profile
+ln -s ~/Projects/dotfiles/.bashrc ~/.bashrc
 ln -s ~/Projects/dotfiles/.bash_aliases ~/.bash_aliases
 ln -s ~/Projects/dotfiles/.bash_aliases.macos ~/.bash_aliases.macos
 ln -s ~/Projects/dotfiles/.tmux.conf ~/.tmux.conf

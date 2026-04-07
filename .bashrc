@@ -32,75 +32,60 @@
 #   - not ログインシェル
 #   - not インタラクティブシェル
 
-###
-# Mac 用に書いているので、Linux 向けには適当に内容を選んで、デフォルトの ~/.bashrc を編集してください
-###
-
-shopt -s checkwinsize  # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
-
-export PATH=$HOME/local/bin:$HOME/bin:/usr/local/opt/gettext/bin:/usr/local/sbin:$PATH
-export LD_LIBRARY_PATH=${HOME}/local/lib:$LD_LIBRARY_PATH
-export EDITOR=nano
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
 
 ###
-# homebrew
+# prompt
 ###
-eval "$(/opt/homebrew/bin/brew shellenv)"
+export PS1='\[\e[0;36m\]\u@\h (\D{%Y-%m-%dT%H:%M:%S}): \w\n\[\e[0;37m\]\$ '
+export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo  # https://gpanders.com/blog/the-definitive-guide-to-using-tmux-256color-on-macos/
+
+###
+# history
+###
+HISTTIMEFORMAT='%F %T '
+HISTSIZE=10000  # bash history size
+HISTFILESIZE=10000  # HISTFILE save size
+HISTCONTROL=ignoreboth  # don't put duplicate lines or lines starting with space in the history. See bash(1) for more options
+shopt -s histappend  # append to the history file, don't overwrite it
 
 ###
 # pyenv (via https://github.com/pyenv/pyenv-installer)
 ###
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1  # pyenv-virtualenv: prompt changing will be removed from future release. configure `export PYENV_VIRTUALENV_DISABLE_PROMPT=1' to simulate the behavior.
+if command -v pyenv >/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
 
 ###
 # jenv (via homebrew)
 ###
-if [ -d ~/.jenv/ ]; then
-  export PATH="$HOME/.jenv/bin:$PATH"
+if command -v jenv >/dev/null 2>&1; then
+  eval "$(jenv init -)"
 fi
-
-###
-# google cloud sdk (gcloud, gsutil, bq)
-###
-if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk/path.bash.inc"; fi
 
 ###
 # NVM (via homebrew)
 ###
-# export NVM_DIR="$HOME/.nvm"
+# TODO: bashrc は毎回読み込まれるため、nvm load のために毎回ターミナル起動に時間がかかる問題が有名。気になったら lazy load するようにする。
+# [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+
 
 ###
-# uv & uv tools
+# alias
 ###
-. "$HOME/.local/bin/env"
-
-###
-# Rancher Desktop
-###
-export PATH=$HOME/.rd/bin:$PATH
-
-###
-# krew
-###
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
-###
-# Antigravity
-###
-export PATH="/Users/nakata/.antigravity/antigravity/bin:$PATH"
-
+if [ -f ~/.bash_aliases ]; then
+  . ~/.bash_aliases
+fi
 
 ###
 # completion (via `brew install bash-completion@2`)
 ###
-export BASH_COMPLETION_USER_DIR="$HOME/.bash_completion.d"  # https://github.com/scop/bash-completion?tab=readme-ov-file#faq
-
-
-###
-# bashrc
-###
-if [ -f ~/.bashrc ]; then
-  . ~/.bashrc
+# bash completion for brew-installed commands
+# `bash-completion@2` requries bash 4.2+. see readme_update_bash.md
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+# alias completion (https://github.com/cykerway/complete-alias)
+if [ -f ~/.bash_completion.d/complete_alias ]; then
+  . ~/.bash_completion.d/complete_alias
 fi

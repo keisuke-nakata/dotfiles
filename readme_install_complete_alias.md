@@ -9,7 +9,7 @@ brew insatall bash-completion@2
 curl https://raw.githubusercontent.com/cykerway/complete-alias/master/complete_alias > ~/.bash_completion.d/complete_alias
 ```
 
-`.bash_profile` に `. ~/.bash_completion.d/complete_alias` を追加すると使える。
+`.bashrc` に `. ~/.bash_completion.d/complete_alias` を追加すると使える。
 例： `complete -F _complete_alias kc`
 (↑は、`alias kc=kubectl` というエイリアスが張られているという前提)
 
@@ -27,3 +27,7 @@ kubectl を brew で入れてるなら勝手に completion も入るので不要
 #### `git`
 `curl https://raw.githubusercontent.com/git/git/refs/heads/master/contrib/completion/git-completion.bash > ${BASH_COMPLETION_USER_DIR}/completions/git`
 (`git` 本体のリポジトリに completion の定義ファイルがあるので、それをダウンロードしてくる)
+
+#### `gcloud`
+`$HOME/google-cloud-sdk/completion.bash.inc` に gcloud の completion の定義があるので、それを `${BASH_COMPLETION_USER_DIR}/completions/gcloud` に link する。
+`ln -s $HOME/google-cloud-sdk/completion.bash.inc ${BASH_COMPLETION_USER_DIR}/completions/gcloud`
